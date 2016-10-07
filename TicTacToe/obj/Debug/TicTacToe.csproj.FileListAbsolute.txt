@@ -1,1 +1,9 @@
 c:\users\jairo\documents\visual studio 2015\Projects\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe.config
+C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe.config
+C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csprojResolveAssemblyReference.cache
+C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.GameGui.resources
+C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.Cache
+C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe
+C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\bin\Debug\TicTacToe.pdb
+C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
+C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
