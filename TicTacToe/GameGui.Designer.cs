@@ -34,6 +34,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonRM = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,11 +87,22 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // buttonRM
+            // 
+            this.buttonRM.Location = new System.Drawing.Point(39, 229);
+            this.buttonRM.Name = "buttonRM";
+            this.buttonRM.Size = new System.Drawing.Size(172, 23);
+            this.buttonRM.TabIndex = 2;
+            this.buttonRM.Text = "rematch";
+            this.buttonRM.UseVisualStyleBackColor = true;
+            this.buttonRM.Visible = false;
+            // 
             // GameGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 279);
+            this.Controls.Add(this.buttonRM);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "GameGui";
@@ -110,5 +122,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button buttonRM;
     }
 }
