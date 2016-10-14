@@ -19,7 +19,26 @@ namespace TicTacToe
         public GameGui()
         {
             InitializeComponent();
+            createGame();
         }
+        private void createGame()
+        {
+            for (int x = 1; x < 4; x++)
+            {
+                for (int y = 1; y < 4; y++)
+                {
+                    Button button = new Button();
+                    button.Name = "button" + x + y;
+                    button.Text = "";
+                    button.Location = new System.Drawing.Point(20 + 45 * (x - 1), 20 + 45 * (y - 1));
+                    button.Size = new System.Drawing.Size(45, 45);
+                    button.UseVisualStyleBackColor = true;
+                    button.Click += button_Click; ;
+                    button.Visible = true;
+                    groupBox1.Controls.Add(button);
+
+                }
+            }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
