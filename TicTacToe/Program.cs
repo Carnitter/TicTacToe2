@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,6 +12,8 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
+            //(new Thread(() => { Server s = new Server(); })).Start();
+            //Client c = new Client();
             GameGui gui = new GameGui();
             gui.Show();
             gui.Activate();
