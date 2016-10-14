@@ -14,10 +14,12 @@ namespace TicTacToe
     {
         public Boolean turn = false;
         public int count = 0;
+        public List<Button> gameButtons;
 
 
         public GameGui()
         {
+            gameButtons = new List<Button>();
             InitializeComponent();
             createGame();
         }
@@ -35,10 +37,12 @@ namespace TicTacToe
                     button.UseVisualStyleBackColor = true;
                     button.Click += button_Click; ;
                     button.Visible = true;
+                    gameButtons.Add(button);
                     groupBox1.Controls.Add(button);
 
                 }
             }
+        }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -57,9 +61,6 @@ namespace TicTacToe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-           // listBox1.Items.Add("you: " + textBox1.Text);
-           // textBox1.Text = "";
             
         }
 
@@ -87,35 +88,26 @@ namespace TicTacToe
         public void winner()
         {
             Boolean winner = false;
-            if(button11.Text == button21.Text && button21.Text == button31.Text && !button11.Enabled)
-            {   
-                winner = true;
+            for(int i = 0; i < 3; i++)
+            { 
+              if (gameButtons[i].Text == gameButtons[i + 3].Text && gameButtons[i + 3].Text == gameButtons[i + 6].Text && !gameButtons[i].Enabled)
+              {
+                        winner = true;
+              }
             }
-            else if(button12.Text == button22.Text && button22.Text == button32.Text && !button12.Enabled)
+
+            for (int i = 0; i < 9; i += 3)
+            {
+                if (gameButtons[i].Text == gameButtons[i + 1].Text && gameButtons[i + 1].Text == gameButtons[i + 2].Text && !gameButtons[i].Enabled)
+                {
+                    winner = true;
+                }
+            }
+            if (gameButtons[0].Text == gameButtons[4].Text && gameButtons[4].Text == gameButtons[8].Text && !gameButtons[0].Enabled)
             {
                 winner = true;
             }
-            else if (button13.Text == button23.Text && button23.Text == button33.Text && !button13.Enabled)
-            {
-                winner = true;
-            }
-            else if (button11.Text == button12.Text && button12.Text == button13.Text && !button11.Enabled)
-            {
-                winner = true;
-            }
-            else if (button21.Text == button22.Text && button22.Text == button23.Text && !button21.Enabled)
-            {
-                winner = true;
-            }
-            else if (button31.Text == button32.Text && button32.Text == button33.Text && !button31.Enabled)
-            {
-                winner = true;
-            }
-            else if (button13.Text == button22.Text && button22.Text == button31.Text && !button13.Enabled)
-            {
-                winner = true;
-            }
-            else if (button11.Text == button22.Text && button22.Text == button33.Text && !button11.Enabled)
+            if (gameButtons[2].Text == gameButtons[4].Text && gameButtons[4].Text == gameButtons[6].Text && !gameButtons[2].Enabled)
             {
                 winner = true;
             }
