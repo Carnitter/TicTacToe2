@@ -96,6 +96,7 @@
             this.buttonRM.Text = "rematch";
             this.buttonRM.UseVisualStyleBackColor = true;
             this.buttonRM.Visible = false;
+            this.buttonRM.Click += new System.EventHandler(this.buttonRM_Click);
             // 
             // GameGui
             // 

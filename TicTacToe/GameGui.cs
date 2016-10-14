@@ -13,6 +13,8 @@ namespace TicTacToe
     public partial class GameGui : Form
     {
         public Boolean turn = false;
+        public Boolean gameFinished = false;
+        public Boolean winner = false;
         public int count = 0;
         public List<Button> gameButtons;
 
@@ -82,12 +84,11 @@ namespace TicTacToe
             }
             button.Enabled = false;
             turn = !turn;
-            winner();
+            hasWon();
         }
 
-        public void winner()
+        public void hasWon()
         {
-            Boolean winner = false;
             for(int i = 0; i < 3; i++)
             { 
               if (gameButtons[i].Text == gameButtons[i + 3].Text && gameButtons[i + 3].Text == gameButtons[i + 6].Text && !gameButtons[i].Enabled)
@@ -114,7 +115,7 @@ namespace TicTacToe
 
             if (count == 8 && !winner)
             {
-                groupBox1.Enabled = false;
+                gameOver();
                 listBox1.Items.Add("Gelijkspel!");
                 Console.WriteLine("Gelijkspel!");
             }
@@ -131,9 +132,38 @@ namespace TicTacToe
                     listBox1.Items.Add("Jairo wint!");
                     Console.WriteLine("Jairo wint!");
                 }
-                groupBox1.Enabled = false;
+                gameOver();
             }
             count++;
+        }
+
+        public void gameOver()
+        {
+            groupBox1.Enabled = false;
+            gameFinished = true;
+            buttonRM.Visible = true;
+            buttonRM.Enabled = true;
+        }
+
+        public void buttonRM_Click(object sender, EventArgs e)
+        {
+            resetGame();
+            buttonRM.Visible = false;
+            buttonRM.Enabled = false;
+        }
+
+        public void resetGame()
+        {
+            groupBox1.Enabled = true;
+            count = 0;
+            winner = false;
+            gameFinished = false;
+            turn = false;
+            foreach(Button b in gameButtons)
+            {
+                b.Enabled = true;
+                b.Text = "";
+            }
         }
     }
 }
