@@ -30,7 +30,9 @@ namespace TicTacToe
                 TcpClient tcpclnt = new TcpClient();
                 Console.WriteLine("Connecting.....");
 
-                tcpclnt.Connect("127.0.0.1", 8001);
+                //tcpclnt.Connect("127.0.0.1", 8001);
+                tcpclnt.Connect("145.102.70.175", 8001);
+                
                 // use the ipaddress as in the server program
 
                 String str = Console.ReadLine();
