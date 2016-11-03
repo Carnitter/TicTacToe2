@@ -139,7 +139,8 @@ namespace TicTacToe
             }
             else
             {
-                listBox1.Items.Add($"Turns: {count + 1}");
+                int c = count + 1;
+                listBox1.Items.Add($"Turns: {c}");
                 for (int i = 0; i < 3; i++)
                 {
                     if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && allPlays[i].text != "")
