@@ -233,14 +233,15 @@ namespace TicTacToe
             }
         }
 
-        public void checkList(List<Play> turn)
+        public void checkList(List<Play> turns)
         {
-            if (turn != null){
-                allPlays = turn;
+            turn = !turn;
+            if (turns != null){
+                allPlays = turns;
             }
             if (this.InvokeRequired)
             {
-                this.Invoke(new MethodInvoker(() => checkList(turn)));
+                this.Invoke(new MethodInvoker(() => checkList(turns)));
             }
             else
             {
