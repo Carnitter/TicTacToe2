@@ -15,9 +15,12 @@ namespace TicTacToe
     public class Server
     {
         public TcpListener m_Socket;
-        private TcpClient m_Client;
+        public TcpClient m_Client;
         private Stream stream;
         int count = 0;
+        //public delegate void DataReceivedHandler(object sender, EventArgs e);
+
+
         public Server()
         {
             Thread acceptClients = new Thread(new ThreadStart(acceptConnections));
@@ -29,9 +32,9 @@ namespace TicTacToe
             try
             {
                 //localhost
-                //IPAddress ipConfig = IPAddress.Parse("127.0.0.1");
+                IPAddress ipConfig = IPAddress.Parse("127.0.0.1");
                 //Justin IP
-                IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
+                //IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
                 //Jairo IP
                 //IPAddress ipConfig = IPAddress.Parse("145.48.119.239");   
                 m_Socket = new TcpListener(ipConfig, 8001);
@@ -73,6 +76,19 @@ namespace TicTacToe
             {
                 var o = formatter.Deserialize(stream);
                 Console.WriteLine(o);
+                if (o is Play)
+                {
+                    Play p = (Play)o;
+                    return o.ToString();
+                }
+                if (o is List<Play>)
+                {
+                    List<Play> pl = (List<Play>)o;
+                    foreach (Play p in pl)
+                    {
+                        Console.WriteLine(p);
+                    }
+                }
                 return o;
             }
             catch (Exception e)
@@ -94,6 +110,8 @@ namespace TicTacToe
             streamW.WriteLine(message);
             streamW.Flush();
         }
+
+
 
     }
 

@@ -24,3 +24,8 @@ C:\Users\justin\Source\Repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
 C:\Users\gebruiker\Source\Repos\TicTacToe2\TicTacToe\bin\Debug\TicTacToe.exe.config
 C:\Users\gebruiker\Source\Repos\TicTacToe2\TicTacToe\obj\Debug\TicTacToe.exe
 C:\Users\gebruiker\Source\Repos\TicTacToe2\TicTacToe\obj\Debug\TicTacToe.pdb
+C:\Users\gebruiker\Source\Repos\TicTacToe2\TicTacToe\bin\Debug\TicTacToe.exe
+C:\Users\gebruiker\Source\Repos\TicTacToe2\TicTacToe\bin\Debug\TicTacToe.pdb
+C:\Users\gebruiker\Source\Repos\TicTacToe2\TicTacToe\obj\Debug\TicTacToe.csprojResolveAssemblyReference.cache
+C:\Users\gebruiker\Source\Repos\TicTacToe2\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.Cache
+C:\Users\gebruiker\Source\Repos\TicTacToe2\TicTacToe\obj\Debug\TicTacToe.GameGui.resources

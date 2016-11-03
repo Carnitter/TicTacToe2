@@ -20,16 +20,30 @@ namespace TicTacToe
         public List<Button> gameButtons;
         public List<Play> allPlays;
         public Client c;
+        public Server s;
+        public bool server = false;
+        public bool connected = false;
 
 
-        public GameGui()
+        public GameGui(bool server)
         {
-            c = new Client();
+            this.server = server;
+            if (server)
+            {
+                s = new Server();
+            }else
+            {
+                c = new Client();
+            }
+
             gameButtons = new List<Button>();
             allPlays = new List<Play>();
             InitializeComponent();
             createGame();
         }
+
+        
+
         private void createGame()
         {
             for (int x = 1; x < 4; x++)
@@ -44,11 +58,13 @@ namespace TicTacToe
                     button.UseVisualStyleBackColor = true;
                     button.Click += button_Click;
                     button.Visible = true;
+                    //button.Enabled = false;
                     gameButtons.Add(button);
                     groupBox1.Controls.Add(button);
                     allPlays.Add(new Play());
                 }
             }
+                     
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -92,92 +108,44 @@ namespace TicTacToe
             }
             button.Enabled = false;
             turn = !turn;
-            c.sendData(allPlays);
+            if (server)
+            {
+                s.sendData(allPlays);
+            }else
+            {
+                c.sendData(allPlays);
+            }
+            
             hasWon();
         }
 
-
         public void hasWon()
-{
+        {
             listBox1.Items.Add($"Turns: {count + 1}");
             for (int i = 0; i < 3; i++)
-    { 
-      if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && !gameButtons[i].Enabled)
-      {
-                winner = true;
-      }
-    }
-
-    for (int i = 0; i < 9; i += 3)
-    {
-        if (allPlays[i].text == allPlays[i + 1].text && allPlays[i + 1].text == allPlays[i + 2].text && !gameButtons[i].Enabled)
-        {
-            winner = true;
-        }
-    }
-    if (allPlays[0].text == allPlays[4].text && allPlays[4].text == allPlays[8].text && !gameButtons[0].Enabled)
-    {
-        winner = true;
-    }
-    if (allPlays[2].text == allPlays[4].text && allPlays[4].text == allPlays[6].text && !gameButtons[2].Enabled)
-    {
-        winner = true;
-    }
-    if (count == 8 && !winner)
-    {
-        gameOver();
-        listBox1.Items.Add("Gelijkspel!");
-        Console.WriteLine("Gelijkspel!");
-    }
-
-
-    if (winner)
-    {
-        if (turn)
-        {
-            listBox1.Items.Add("Justin wint!");
-            Console.WriteLine("Justin wint!");
-        }else
-        {
-            listBox1.Items.Add("Jairo wint!");
-            Console.WriteLine("Jairo wint!");
-        }
-        gameOver();
-    }
-    count++;
-}
-
-        /*public void hasWon()
-        {
-            for(int i = 0; i < 3; i++)
-            { 
-              if (gameButtons[i].Text == gameButtons[i + 3].Text && gameButtons[i + 3].Text == gameButtons[i + 6].Text && !gameButtons[i].Enabled)
-              {
+            {
+                if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && !gameButtons[i].Enabled)
+                {
                         winner = true;
               }
             }
 
             for (int i = 0; i < 9; i += 3)
             {
-                if (gameButtons[i].Text == gameButtons[i + 1].Text && gameButtons[i + 1].Text == gameButtons[i + 2].Text && !gameButtons[i].Enabled)
+                if (allPlays[i].text == allPlays[i + 1].text && allPlays[i + 1].text == allPlays[i + 2].text && !gameButtons[i].Enabled)
                 {
                     winner = true;
                 }
             }
-            if (gameButtons[0].Text == gameButtons[4].Text && gameButtons[4].Text == gameButtons[8].Text && !gameButtons[0].Enabled)
+            if (allPlays[0].text == allPlays[4].text && allPlays[4].text == allPlays[8].text && !gameButtons[0].Enabled)
             {
                 winner = true;
             }
-            if (gameButtons[2].Text == gameButtons[4].Text && gameButtons[4].Text == gameButtons[6].Text && !gameButtons[2].Enabled)
+            if (allPlays[2].text == allPlays[4].text && allPlays[4].text == allPlays[6].text && !gameButtons[2].Enabled)
             {
                 winner = true;
             }
-            if (count == 8 && !winner)
-            {
-                gameOver();
-                listBox1.Items.Add("Gelijkspel!");
-                Console.WriteLine("Gelijkspel!");
-            }
+            
 
 
             if (winner)
@@ -193,8 +161,22 @@ namespace TicTacToe
                 }
                 gameOver();
             }
-            count++;
-        }*/
+
+            count = 0;
+            foreach(Play p in allPlays)
+            {
+                if(p.text != "")
+                {
+                    count++;
+                }
+            }
+            if (count == 9 && !winner)
+            {
+                gameOver();
+                listBox1.Items.Add("Gelijkspel!");
+                Console.WriteLine("Gelijkspel!");
+            }
+        }
 
         public void gameOver()
         {
@@ -228,5 +210,61 @@ namespace TicTacToe
                 p.text = "";
             }
         }
+
+        public void checkList()
+        {
+            foreach(Play p in allPlays)
+            {
+                gameButtons[allPlays.IndexOf(p)].Text = p.text;
+            }
+        }
+
     }
 }
+
+
+/*public void ReceivedTimerProcessor(object sender, EventArgs e)
+{
+    if (!connected)
+    {
+        if (server && s.m_Client.Connected)
+        {
+            foreach (Button b in gameButtons)
+            {
+                b.Enabled = true;
+            }
+            receivedTimer.Start();
+        }
+        else if (!server && c.tcpclnt.Connected)
+        {
+            foreach (Button b in gameButtons)
+            {
+                b.Enabled = true;
+            }
+            receivedTimer.Start();
+        }
+        connected = true;
+    }
+    else if (s.receiveData() != null)
+    {
+        if (server)
+        {
+            if (s.receiveData() is List<Play>)
+            {
+                checkList();
+                hasWon();
+            }
+        }
+        else
+        {
+            if (c.receiveData() is List<Play>)
+            {
+                checkList();
+                hasWon();
+            }
+
+        }
+    }
+
+
+}*/

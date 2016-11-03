@@ -13,7 +13,7 @@ namespace TicTacToe
     public class Client
     {
         private Stream stream;
-
+        public TcpClient tcpclnt;
         public delegate void infoUpdater(string text);
 
         //public MessagesUpdated MessageNotifier;
@@ -27,22 +27,19 @@ namespace TicTacToe
         {
             try
             {
-                TcpClient tcpclnt = new TcpClient();
+                tcpclnt = new TcpClient();
                 Console.WriteLine("Connecting.....");
 
 
                 //localhost
-                //tcpclnt.Connect("127.0.0.1", 8001);
+                tcpclnt.Connect("127.0.0.1", 8001);
                 //justin IP
-                tcpclnt.Connect("145.102.70.175", 8001);
+                //tcpclnt.Connect("145.102.70.175", 8001);
                 //jairo IP
                 //tcpclnt.Connect("145.48.119.239", 8001);
                 stream = tcpclnt.GetStream();
                 Console.WriteLine("Connected");
                 // use the ipaddress as in the server program
-
-                String str = Console.ReadLine();
-                
                 while (true)
                 {                    
                     if (tcpclnt.Connected)
@@ -84,10 +81,20 @@ namespace TicTacToe
                     Play p = (Play)o;
                     return o.ToString();
                 }
+                if(o is List<Play>)
+                {
+                    List<Play> pl = (List<Play>)o;
+                    foreach(Play p in pl)
+                    {
+                        Console.WriteLine(p);
+                    }
+                    return pl;
+                }
                 return o;
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
         }
