@@ -29,6 +29,7 @@ namespace TicTacToe
                 try
                 {
                     IPAddress ipConfig = IPAddress.Parse("127.0.0.1");
+                    //IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
                     m_Socket = new TcpListener(ipConfig, 8001);
                     m_Socket.Start();
                     while (true)
@@ -36,7 +37,7 @@ namespace TicTacToe
                         m_Client = m_Socket.AcceptTcpClient();
                         stream = m_Client.GetStream();
                         sendData("xxaxaxa");
-                    sendData(new Play());
+                        sendData(new Play());
                     }
                 }
                 catch (Exception error)
