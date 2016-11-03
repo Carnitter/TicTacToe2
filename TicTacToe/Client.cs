@@ -44,13 +44,10 @@ namespace TicTacToe
                 String str = Console.ReadLine();
                 
                 while (true)
-                {
-                    
+                {                    
                     if (tcpclnt.Connected)
                     {
-                        sendData("xaxax");
-                        sendData(new Play());
-                        Console.WriteLine("connected");
+                        receiveData();
                     }
                     
                 }
