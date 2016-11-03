@@ -23,7 +23,7 @@ namespace TicTacToe
         public Server s;
         public bool server = false;
         public bool connected = false;
-
+        public System.Windows.Forms.Timer receivedTimer = new System.Windows.Forms.Timer();
 
         public GameGui(bool server)
         {
@@ -34,15 +34,45 @@ namespace TicTacToe
             }else
             {
                 c = new Client();
-            }
-
+            }        
+            receivedTimer.Tick += new EventHandler(TimerTick);
+            receivedTimer.Interval = 1000;
             gameButtons = new List<Button>();
             allPlays = new List<Play>();
             InitializeComponent();
             createGame();
+            receivedTimer.Start();
+
         }
 
-        
+        public void TimerTick(Object o, EventArgs e)
+        {
+                /*if (server)
+                {
+                    if (s.receiveData() is List<Play>)
+                    {
+                        allPlays = (List<Play>)s.receiveData();
+                        checkList();
+                        hasWon();
+                        Console.WriteLine("lalala");
+                    }
+
+                }
+                else
+                {
+                    if (c.receiveData() is List<Play>)
+                    {
+                        allPlays = (List<Play>)s.receiveData();
+                        checkList();
+                        hasWon();
+                    }
+
+                }*/
+            
+            
+            
+        }
+
 
         private void createGame()
         {
@@ -64,6 +94,21 @@ namespace TicTacToe
                     allPlays.Add(new Play());
                 }
             }
+            if (server)
+            {
+                while (!s.m_Client.Connected)
+                {
+
+                }
+            }
+            else
+            {
+                while (!c.tcpclnt.Connected)
+                {
+
+                }
+            }
+            
                      
         }
 
@@ -220,51 +265,8 @@ namespace TicTacToe
         }
 
     }
+
+
 }
 
 
-/*public void ReceivedTimerProcessor(object sender, EventArgs e)
-{
-    if (!connected)
-    {
-        if (server && s.m_Client.Connected)
-        {
-            foreach (Button b in gameButtons)
-            {
-                b.Enabled = true;
-            }
-            receivedTimer.Start();
-        }
-        else if (!server && c.tcpclnt.Connected)
-        {
-            foreach (Button b in gameButtons)
-            {
-                b.Enabled = true;
-            }
-            receivedTimer.Start();
-        }
-        connected = true;
-    }
-    else if (s.receiveData() != null)
-    {
-        if (server)
-        {
-            if (s.receiveData() is List<Play>)
-            {
-                checkList();
-                hasWon();
-            }
-        }
-        else
-        {
-            if (c.receiveData() is List<Play>)
-            {
-                checkList();
-                hasWon();
-            }
-
-        }
-    }
-
-
-}*/

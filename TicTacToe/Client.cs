@@ -40,15 +40,16 @@ namespace TicTacToe
                 stream = tcpclnt.GetStream();
                 Console.WriteLine("Connected");
                 // use the ipaddress as in the server program
+               
                 while (true)
                 {                    
-                    if (tcpclnt.Connected)
-                    {
-                        receiveData();
-                    }
-                    
-                }
-            }
+                  if (tcpclnt.Connected)
+                 {
+                      receiveData();
+                  }
+                  
+               }
+           }
 
             catch (Exception e)
             {

@@ -18,11 +18,11 @@ namespace TicTacToe
         public TcpClient m_Client;
         private Stream stream;
         int count = 0;
-        //public delegate void DataReceivedHandler(object sender, EventArgs e);
-
+        
 
         public Server()
         {
+            //acceptConnections();
             Thread acceptClients = new Thread(new ThreadStart(acceptConnections));
             acceptClients.Start();
         }
@@ -45,7 +45,7 @@ namespace TicTacToe
                 {
                     if (m_Client.Connected)
                     {
-                        receiveData();
+                        //receiveData();
                     }
 
                 }
@@ -88,6 +88,7 @@ namespace TicTacToe
                     {
                         Console.WriteLine(p);
                     }
+                    return pl;
                 }
                 return o;
             }
