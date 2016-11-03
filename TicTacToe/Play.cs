@@ -6,13 +6,23 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
+    [Serializable]
     public class Play
     {
         public String text;
+        public String test;
+        public int age;
 
         public Play()
         {
             text = "";
+        }
+
+        public String toString()
+        {
+            test = "JAIRO";
+            age = 21;
+            return $"{text} {test} {age}";
         }
 
 

@@ -43,7 +43,7 @@ namespace TicTacToe
                     button.Visible = true;
                     gameButtons.Add(button);
                     groupBox1.Controls.Add(button);
-                    allPlays.Add(new TicTacToe.Play());
+                    allPlays.Add(new Play());
                 }
             }
         }
@@ -95,7 +95,8 @@ namespace TicTacToe
 
         public void hasWon()
 {
-    for(int i = 0; i < 3; i++)
+            listBox1.Items.Add($"Turns: {count + 1}");
+            for (int i = 0; i < 3; i++)
     { 
       if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && !gameButtons[i].Enabled)
       {
