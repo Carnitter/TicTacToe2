@@ -146,7 +146,7 @@ namespace TicTacToe
                 {
                     if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && allPlays[i].text != "")
                     {
-                        if(allPlays[i].text == "X")
+                        if(allPlays[i].text == "X" && server || allPlays[i].text == "O" && !server)
                         {
                             listBox1.Items.Add("Je hebt gewonnen!");
                         }
@@ -162,7 +162,7 @@ namespace TicTacToe
                 {
                     if (allPlays[i].text == allPlays[i + 1].text && allPlays[i + 1].text == allPlays[i + 2].text && allPlays[i].text != "")
                     {
-                        if (allPlays[i].text == "X")
+                        if (allPlays[i].text == "X" && server || allPlays[i].text == "O" && !server)
                         {
                             listBox1.Items.Add("Je hebt gewonnen!");
                         }
@@ -175,7 +175,7 @@ namespace TicTacToe
                 }
                 if (allPlays[0].text == allPlays[4].text && allPlays[4].text == allPlays[8].text && allPlays[0].text != "")
                 {
-                    if (allPlays[0].text == "X")
+                    if (allPlays[i].text == "X" && server || allPlays[i].text == "O" && !server)
                     {
                         listBox1.Items.Add("Je hebt gewonnen!");
                     }
@@ -187,7 +187,7 @@ namespace TicTacToe
                 }
                 if (allPlays[2].text == allPlays[4].text && allPlays[4].text == allPlays[6].text && allPlays[2].text != "")
                 {
-                    if (allPlays[2].text == "X")
+                    if (allPlays[i].text == "X" && server || allPlays[i].text == "O" && !server)
                     {
                         listBox1.Items.Add("Je hebt gewonnen!");
                     }
