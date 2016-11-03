@@ -20,6 +20,8 @@ namespace TicTacToe
         int count = 0;
         public delegate void receivedData(List<Play> plays);
         public receivedData receiver;
+        public delegate void chatData(String chat);
+        public chatData chatReceiver;
         public String name;
 
 
@@ -108,6 +110,11 @@ namespace TicTacToe
                     List<Play> plays = (List<Play>)data;
                     writeToFile(plays);
                 }
+                if (data is String)
+                { 
+                    String oString = (String)data;
+                    chatReceiver.Invoke(oString);
+                }
                 formatter.Serialize(stream, data);
                 
             }
@@ -124,6 +131,12 @@ namespace TicTacToe
             {
                 var o = formatter.Deserialize(stream);
                 Console.WriteLine(o);
+                if(o is String)
+                {
+                    String oString = (String)o;
+                    chatReceiver.Invoke(oString);
+                    return oString;
+                }
                 if (o is Play)
                 {
                     Play p = (Play)o;

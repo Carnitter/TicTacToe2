@@ -94,7 +94,15 @@ namespace TicTacToe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            if(textBox1.Text != "")
+            {
+                String str = textBox1.Text;
+                if (server)
+                {
+                    s.sendData(str);
+                }
+            }
+            textBox1.Text = "";
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -274,6 +282,18 @@ namespace TicTacToe
                 }             
             }
             hasWon();
+        }
+
+        public void updateChat(String data)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(() => updateChat(data)));
+            }
+            else
+            {
+                listBox1.Items.Add(data);
+            }
         }
             
         

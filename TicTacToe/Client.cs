@@ -17,6 +17,8 @@ namespace TicTacToe
         public delegate void infoUpdater(string text);
         public delegate void receivedData(List<Play> plays);
         public receivedData receiver;
+        public delegate void chatData(String chat);
+        public chatData chatReceiver;
         public String name;
 
         //public MessagesUpdated MessageNotifier;
@@ -69,6 +71,11 @@ namespace TicTacToe
             var formatter = new BinaryFormatter();
             try
             {
+                if (data is String)
+                {
+                    String oString = (String)data;
+                    chatReceiver.Invoke(oString);
+                }
                 formatter.Serialize(stream, data);
             }
             catch (Exception e)
@@ -98,6 +105,12 @@ namespace TicTacToe
                     }
                     receiver.Invoke(pl);
                     return pl;
+                }
+                if (o is String)
+                {
+                    String oString = (String)o;
+                    chatReceiver.Invoke(oString);
+                    return oString;
                 }
                 return o;
             }
