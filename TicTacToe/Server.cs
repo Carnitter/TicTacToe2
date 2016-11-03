@@ -34,11 +34,9 @@ namespace TicTacToe
                     m_Socket.Start();
                     while (true)
                     {
-                         m_Client = m_Socket.AcceptTcpClient();
-                         //Thread thread = new Thread(HandleClientThread);
-                         //thread.Start(client);
-
-                    count++;
+                        //Thread thread = new Thread(HandleClientThread);
+                        //thread.Start(client);
+                        //count++;
                         m_Client = m_Socket.AcceptTcpClient();
                         stream = m_Client.GetStream();
                         sendData("xxaxaxa");

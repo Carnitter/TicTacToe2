@@ -18,7 +18,7 @@ namespace TicTacToe
             text = "";
         }
 
-        public String toString()
+        public String ToString()
         {
             test = "JAIRO";
             age = 21;
