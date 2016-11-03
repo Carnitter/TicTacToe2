@@ -34,6 +34,11 @@ namespace TicTacToe
                     m_Socket.Start();
                     while (true)
                     {
+                        m_Client[count] = m_Socket.AcceptTcpClient();
+                         Thread thread = new Thread(HandleClientThread);
+                         thread.Start(client);
+
+                    count++;
                         m_Client = m_Socket.AcceptTcpClient();
                         stream = m_Client.GetStream();
                         sendData("xxaxaxa");
@@ -178,3 +183,19 @@ namespace TicTacToe
 //        }
 //    }
 //}
+
+
+
+
+static void HandleClientThread(object obj)
+{
+    TcpClient client = obj as TcpClient;
+
+    bool done = false;
+    while (!done)
+    {
+        
+    }
+    client.Close();
+    Console.WriteLine("Connection closed");
+}

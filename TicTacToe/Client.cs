@@ -14,6 +14,9 @@ namespace TicTacToe
     {
         private Stream stream;
 
+        public delegate void infoUpdater(string text);
+
+        //public MessagesUpdated MessageNotifier;
         public Client()
         {
             Thread findServer = new Thread(new ThreadStart(lookForConnection));
