@@ -6,18 +6,13 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class Play
+    public class Play
     {
-        int x;
-        int y;
-        int playerNumber;
+        public String text;
 
-        public Play(int x, int y, int playerNumber)
+        public Play()
         {
-            this.x = x;
-            this.y = y;
-            this.playerNumber = playerNumber;
-
+            text = "";
         }
 
 

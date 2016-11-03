@@ -17,7 +17,7 @@ namespace TicTacToe
             int count = 0;
             public Form1()
             {
-                InitializeComponent();
+                //InitializeComponent();
             }
 
             private void btnStart_Click(object sender, EventArgs e)
@@ -34,25 +34,25 @@ namespace TicTacToe
                     IPAddress ipConfig = IPAddress.Parse("145.102.71.253");
                     m_Socket = new TcpListener(ipConfig, 1025);
                     m_Socket.Start();
-                    updInfo("listening");
+                    //updInfo("listening");
 
                     while (true)
                     {
                         m_Client[count] = m_Socket.AcceptTcpClient();
                         sendData(m_Client[count], "connected");
-                        updInfo("new client");
+                        //updInfo("new client");
                         count++;
                     }
                 }
                 catch (Exception error)
                 {
-                    updInfo(error.Message);
+                    //updInfo(error.Message);
                 }
             }
 
-            public void updInfo(String textLog)
+           /* public void updInfo(String textLog)
             {
-                if (this.txtStatus.InvokeRequired)
+                if (InvokeRequired)
                 {
                     txtStatus.Invoke(new MethodInvoker(delegate { txtStatus.Text += textLog + "\n"; }));
                 }
@@ -60,7 +60,7 @@ namespace TicTacToe
                 {
                     this.txtStatus.Text = textLog;
                 }
-            }
+            }*/
 
             private void sendData(TcpClient soc, String strData)
             {

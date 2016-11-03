@@ -17,11 +17,13 @@ namespace TicTacToe
         public Boolean winner = false;
         public int count = 0;
         public List<Button> gameButtons;
+        public List<Play> allPlays;
 
 
         public GameGui()
         {
             gameButtons = new List<Button>();
+            allPlays = new List<Play>();
             InitializeComponent();
             createGame();
         }
@@ -41,7 +43,7 @@ namespace TicTacToe
                     button.Visible = true;
                     gameButtons.Add(button);
                     groupBox1.Controls.Add(button);
-
+                    allPlays.Add(new TicTacToe.Play());
                 }
             }
         }
@@ -75,11 +77,14 @@ namespace TicTacToe
         private void button_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
+            int i = gameButtons.IndexOf(button);
             if (!turn)
             {
+                allPlays[i].text = "X";
                 button.Text = "X";
             }else
             {
+                allPlays[i].text = "O";
                 button.Text = "O";
             }
             button.Enabled = false;
@@ -87,7 +92,57 @@ namespace TicTacToe
             hasWon();
         }
 
+
         public void hasWon()
+{
+    for(int i = 0; i < 3; i++)
+    { 
+      if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && !gameButtons[i].Enabled)
+      {
+                winner = true;
+      }
+    }
+
+    for (int i = 0; i < 9; i += 3)
+    {
+        if (allPlays[i].text == allPlays[i + 1].text && allPlays[i + 1].text == allPlays[i + 2].text && !gameButtons[i].Enabled)
+        {
+            winner = true;
+        }
+    }
+    if (allPlays[0].text == allPlays[4].text && allPlays[4].text == allPlays[8].text && !gameButtons[0].Enabled)
+    {
+        winner = true;
+    }
+    if (allPlays[2].text == allPlays[4].text && allPlays[4].text == allPlays[6].text && !gameButtons[2].Enabled)
+    {
+        winner = true;
+    }
+    if (count == 8 && !winner)
+    {
+        gameOver();
+        listBox1.Items.Add("Gelijkspel!");
+        Console.WriteLine("Gelijkspel!");
+    }
+
+
+    if (winner)
+    {
+        if (turn)
+        {
+            listBox1.Items.Add("Justin wint!");
+            Console.WriteLine("Justin wint!");
+        }else
+        {
+            listBox1.Items.Add("Jairo wint!");
+            Console.WriteLine("Jairo wint!");
+        }
+        gameOver();
+    }
+    count++;
+}
+
+        /*public void hasWon()
         {
             for(int i = 0; i < 3; i++)
             { 
@@ -134,7 +189,7 @@ namespace TicTacToe
                 gameOver();
             }
             count++;
-        }
+        }*/
 
         public void gameOver()
         {
@@ -162,6 +217,10 @@ namespace TicTacToe
             {
                 b.Enabled = true;
                 b.Text = "";
+            }
+            foreach(Play p in allPlays)
+            {
+                p.text = "";
             }
         }
     }
