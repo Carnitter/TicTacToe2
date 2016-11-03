@@ -10,22 +10,31 @@ using System.Windows.Forms;
 
 namespace TicTacToe
 {
-           public partial class Form1 : Form
+           public class server
         {
             public TcpListener m_Socket;
             private TcpClient[] m_Client;
             int count = 0;
-            public Form1()
-            {
-                InitializeComponent();
-            }
 
-            private void btnStart_Click(object sender, EventArgs e)
-            {
-                Thread acceptClients = new Thread(new ThreadStart(acceptConnections));
-                acceptClients.IsBackground = true;
-                acceptClients.Start();
-            }
+        public server()
+        {
+
+
+        }
+
+
+        //public Form1()
+            //{
+            //    InitializeComponent();
+            //}
+
+            //private void btnStart_Click(object sender, EventArgs e)
+            //{
+            //    Thread acceptClients = new Thread(new ThreadStart(acceptConnections));
+            //    acceptClients.IsBackground = true;
+            //    acceptClients.Start();
+            //}
+
 
             private void acceptConnections()
             {
@@ -39,9 +48,10 @@ namespace TicTacToe
                     while (true)
                     {
                         m_Client[count] = m_Socket.AcceptTcpClient();
-                        sendData(m_Client[count], "connected");
-                        updInfo("new client");
-                        count++;
+                         Thread thread = new Thread(HandleClientThread);
+                         thread.Start(client);
+
+                    count++;
                     }
                 }
                 catch (Exception error)
@@ -141,3 +151,19 @@ namespace TicTacToe
 //        }
 //    }
 //}
+
+
+
+
+static void HandleClientThread(object obj)
+{
+    TcpClient client = obj as TcpClient;
+
+    bool done = false;
+    while (!done)
+    {
+        
+    }
+    client.Close();
+    Console.WriteLine("Connection closed");
+}

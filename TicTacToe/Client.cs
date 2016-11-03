@@ -10,8 +10,13 @@ namespace TicTacToe
 {
     class Client
     {
+        public delegate void infoUpdater(string text);
+
+        //public MessagesUpdated MessageNotifier;
         public Client()
         {
+
+
             try
             {
                 TcpClient tcpclnt = new TcpClient();
@@ -38,7 +43,17 @@ namespace TicTacToe
                 for (int i = 0; i < k; i++)
                     Console.Write(Convert.ToChar(bb[i]));
 
-                tcpclnt.Close();
+                while (true)
+                {
+                    if()
+                     
+
+
+                }
+
+                    //close if while loop is false >> connection lost
+                        tcpclnt.Close();
+                    
             }
 
             catch (Exception e)
