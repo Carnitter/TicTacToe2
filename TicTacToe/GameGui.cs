@@ -210,7 +210,7 @@ namespace TicTacToe
                         count++;
                     }
                 }
-                if (count == 9 && !winner)
+                if (count == 9)
                 {
                     gameOver();
                     listBox1.Items.Add("Gelijkspel!");
