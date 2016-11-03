@@ -7,11 +7,9 @@ C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe
 C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\bin\Debug\TicTacToe.pdb
 C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
 C:\Users\jairo\Documents\GitHub\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
-C:\Users\justin\Source\Repos\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe.config
-C:\Users\justin\Source\Repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
-C:\Users\justin\Source\Repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
-C:\Users\justin\Source\Repos\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe
-C:\Users\justin\Source\Repos\TicTacToe\TicTacToe\bin\Debug\TicTacToe.pdb
-C:\Users\justin\Source\Repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csprojResolveAssemblyReference.cache
-C:\Users\justin\Source\Repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.GameGui.resources
-C:\Users\justin\Source\Repos\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.Cache
+C:\Users\Jairo\Documents\GitHub\TicTacToe2\TicTacToe\bin\Debug\TicTacToe.exe.config
+C:\Users\Jairo\Documents\GitHub\TicTacToe2\TicTacToe\obj\Debug\TicTacToe.exe
+C:\Users\Jairo\Documents\GitHub\TicTacToe2\TicTacToe\obj\Debug\TicTacToe.pdb
+C:\Users\Jairo\Documents\GitHub\TicTacToe2\TicTacToe\obj\Debug\TicTacToe.csprojResolveAssemblyReference.cache
+C:\Users\Jairo\Documents\GitHub\TicTacToe2\TicTacToe\obj\Debug\TicTacToe.GameGui.resources
+C:\Users\Jairo\Documents\GitHub\TicTacToe2\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.Cache
