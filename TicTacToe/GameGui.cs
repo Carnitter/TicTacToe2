@@ -52,34 +52,6 @@ namespace TicTacToe
             
         }
 
-        public void TimerTick(Object o, EventArgs e)
-        {
-                /*if (server)
-                {
-                    if (s.receiveData() is List<Play>)
-                    {
-                        allPlays = (List<Play>)s.receiveData();
-                        checkList();
-                        hasWon();
-                        Console.WriteLine("lalala");
-                    }
-
-                }
-                else
-                {
-                    if (c.receiveData() is List<Play>)
-                    {
-                        allPlays = (List<Play>)s.receiveData();
-                        checkList();
-                        hasWon();
-                    }
-
-                }*/
-            
-            
-            
-        }
-
 
         private void createGame()
         {
@@ -100,22 +72,7 @@ namespace TicTacToe
                     groupBox1.Controls.Add(button);
                     allPlays.Add(new Play());
                 }
-            }
-            if (server)
-            {
-                while (!s.m_Client.Connected)
-                {
-
-                }
-            }
-            else
-            {
-                while (!c.tcpclnt.Connected)
-                {
-
-                }
-            }
-            
+            }           
                      
         }
 
@@ -173,60 +130,69 @@ namespace TicTacToe
 
         public void hasWon()
         {
-            listBox1.Items.Add($"Turns: {count + 1}");
-            for (int i = 0; i < 3; i++)
+            if (this.InvokeRequired)
             {
-                if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && !gameButtons[i].Enabled)
-                {
-                        winner = true;
-              }
+                this.Invoke(new MethodInvoker(() => hasWon()));
             }
-
-            for (int i = 0; i < 9; i += 3)
+            else
             {
-                if (allPlays[i].text == allPlays[i + 1].text && allPlays[i + 1].text == allPlays[i + 2].text && !gameButtons[i].Enabled)
+                listBox1.Items.Add($"Turns: {count + 1}");
+                for (int i = 0; i < 3; i++)
+                {
+                    if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && !gameButtons[i].Enabled)
+                    {
+                        winner = true;
+                    }
+                }
+
+                for (int i = 0; i < 9; i += 3)
+                {
+                    if (allPlays[i].text == allPlays[i + 1].text && allPlays[i + 1].text == allPlays[i + 2].text && !gameButtons[i].Enabled)
+                    {
+                        winner = true;
+                    }
+                }
+                if (allPlays[0].text == allPlays[4].text && allPlays[4].text == allPlays[8].text && !gameButtons[0].Enabled)
                 {
                     winner = true;
                 }
-            }
-            if (allPlays[0].text == allPlays[4].text && allPlays[4].text == allPlays[8].text && !gameButtons[0].Enabled)
-            {
-                winner = true;
-            }
-            if (allPlays[2].text == allPlays[4].text && allPlays[4].text == allPlays[6].text && !gameButtons[2].Enabled)
-            {
-                winner = true;
-            }
-            
-
-
-            if (winner)
-            {
-                if (turn)
+                if (allPlays[2].text == allPlays[4].text && allPlays[4].text == allPlays[6].text && !gameButtons[2].Enabled)
                 {
-                    listBox1.Items.Add("Justin wint!");
-                    Console.WriteLine("Justin wint!");
-                }else
-                {
-                    listBox1.Items.Add("Jairo wint!");
-                    Console.WriteLine("Jairo wint!");
+                    winner = true;
                 }
-                gameOver();
-            }
 
-            count = 0;
-            foreach(Play p in allPlays)
-            {
-                if(p.text != "")
+
+
+                if (winner)
                 {
-                    count++;
+                    if (turn)
+                    {
+                        listBox1.Items.Add("Justin wint!");
+                        Console.WriteLine("Justin wint!");
+                    }
+                    else
+                    {
+                        listBox1.Items.Add("Jairo wint!");
+                        Console.WriteLine("Jairo wint!");
+                    }
+                    gameOver();
                 }
-            }
-            if (count == 9 && !winner)
-            {
-                gameOver();
-                listBox1.Items.Add("Gelijkspel!");
-                Console.WriteLine("Gelijkspel!");
+
+                count = 0;
+                foreach (Play p in allPlays)
+                {
+                    if (p.text != "")
+                    {
+                        gameButtons[allPlays.IndexOf(p)].Enabled = false;
+                        count++;
+                    }
+                }
+                if (count == 9 && !winner)
+                {
+                    gameOver();
+                    listBox1.Items.Add("Gelijkspel!");
+                    Console.WriteLine("Gelijkspel!");
+                }
             }
         }
 
@@ -276,12 +242,12 @@ namespace TicTacToe
             {
                 foreach (Play p in allPlays)
                 {
-
                     gameButtons[allPlays.IndexOf(p)].Text = p.text;
                 }
+                
             }
             hasWon();
-            }
+        }
             
         
 

@@ -47,7 +47,7 @@ namespace TicTacToe
                 {
                     if (m_Client.Connected)
                     {
-                        //receiveData();
+                        receiveData();
                     }
 
                 }
@@ -97,6 +97,7 @@ namespace TicTacToe
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
         }

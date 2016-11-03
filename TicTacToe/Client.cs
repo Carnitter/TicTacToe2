@@ -31,8 +31,6 @@ namespace TicTacToe
             {
                 tcpclnt = new TcpClient();
                 Console.WriteLine("Connecting.....");
-
-
                 //localhost
                 tcpclnt.Connect("127.0.0.1", 8001);
                 //justin IP
@@ -40,15 +38,18 @@ namespace TicTacToe
                 //jairo IP
                 //tcpclnt.Connect("145.48.119.239", 8001);
                 stream = tcpclnt.GetStream();
-                Console.WriteLine("Connected");
+
+
                 // use the ipaddress as in the server program
-               
+
                 while (true)
-                {                    
-                  if (tcpclnt.Connected)
-                 {
+                {
+                    Console.WriteLine("Connected");
+                    Console.WriteLine(tcpclnt.Connected);
+                    if (tcpclnt.Connected)
+                    {
                       receiveData();
-                  }
+                    }
                   
                }
            }

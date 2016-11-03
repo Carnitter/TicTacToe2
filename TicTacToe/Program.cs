@@ -12,7 +12,9 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            Client c = new Client();
+            //Client c = new Client();
+
+            //(new Thread(() => { Server s = new Server(); })).Start();
             //(new Thread(() => { Client c = new Client(); })).Start();
             GameGui guiS = new GameGui(true);
             guiS.Show();
@@ -20,14 +22,14 @@ namespace TicTacToe
             guiS.Visible = true;
             guiS.SetDesktopLocation(0, 0);
             Application.Run(guiS);
-            //(new Thread(() => { Server s = new Server(); })).Start();
             
-            GameGui gui = new GameGui(false);
+            
+            /*GameGui gui = new GameGui(false);
             gui.Show();
             gui.Activate();
             gui.Visible = true;
             gui.SetDesktopLocation(0, 0);
-            Application.Run(gui);
+            Application.Run(gui);*/
         }
     }
 }
