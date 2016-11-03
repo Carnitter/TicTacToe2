@@ -36,6 +36,8 @@ namespace TicTacToe
             try
             {
                 //localhost
+                //IPAddress ipConfig = IPAddress.Parse("127.0.0.1");
+                //thuis PC
                 IPAddress ipConfig = IPAddress.Parse("192.168.1.35");
                 //Justin IP
                 //IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
