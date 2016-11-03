@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class Client
+    public class Client
     {
         private Stream stream;
 
@@ -30,9 +30,14 @@ namespace TicTacToe
                 TcpClient tcpclnt = new TcpClient();
                 Console.WriteLine("Connecting.....");
 
+
+                //localhost
                 //tcpclnt.Connect("127.0.0.1", 8001);
-                tcpclnt.Connect("145.102.70.175", 8001);
-                
+                //justin IP
+                //tcpclnt.Connect("145.102.70.175", 8001);
+                //jairo IP
+                tcpclnt.Connect("145.48.119.239", 8001);
+
                 // use the ipaddress as in the server program
 
                 String str = Console.ReadLine();

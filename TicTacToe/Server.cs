@@ -28,8 +28,13 @@ namespace TicTacToe
             {
                 try
                 {
-                    //IPAddress ipConfig = IPAddress.Parse("127.0.0.1");
-                    IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
+                //localhost
+                //IPAddress ipConfig = IPAddress.Parse("127.0.0.1");
+                //Justin IP
+                //IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
+                //Jairo IP
+                IPAddress ipConfig = IPAddress.Parse("145.48.119.239");
+                
                     m_Socket = new TcpListener(ipConfig, 8001);
                     m_Socket.Start();
                     while (true)

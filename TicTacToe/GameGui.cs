@@ -18,10 +18,12 @@ namespace TicTacToe
         public int count = 0;
         public List<Button> gameButtons;
         public List<Play> allPlays;
+        public Client c;
 
 
         public GameGui()
         {
+            c = new TicTacToe.Client();
             gameButtons = new List<Button>();
             allPlays = new List<Play>();
             InitializeComponent();
@@ -89,6 +91,7 @@ namespace TicTacToe
             }
             button.Enabled = false;
             turn = !turn;
+            c.sendData(allPlays);
             hasWon();
         }
 
