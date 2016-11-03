@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,41 +12,25 @@ using System.Windows.Forms;
 
 namespace TicTacToe
 {
-           public class server
+           public class Server
         {
             public TcpListener m_Socket;
-            private TcpClient[] m_Client;
+            private TcpClient m_Client;
+            private Stream stream;
             int count = 0;
-
-        public server()
-        {
-
-
-        }
-
-
-        //public Form1()
-            //{
-            //    InitializeComponent();
-            //}
-
-            //private void btnStart_Click(object sender, EventArgs e)
-            //{
-            //    Thread acceptClients = new Thread(new ThreadStart(acceptConnections));
-            //    acceptClients.IsBackground = true;
-            //    acceptClients.Start();
-            //}
-
+            public Server()
+            {
+                Thread acceptClients = new Thread(new ThreadStart(acceptConnections));
+                acceptClients.Start();
+            }
 
             private void acceptConnections()
             {
                 try
                 {
-                    IPAddress ipConfig = IPAddress.Parse("145.102.71.253");
-                    m_Socket = new TcpListener(ipConfig, 1025);
+                    IPAddress ipConfig = IPAddress.Parse("127.0.0.1");
+                    m_Socket = new TcpListener(ipConfig, 8001);
                     m_Socket.Start();
-                    updInfo("listening");
-
                     while (true)
                     {
                         m_Client[count] = m_Socket.AcceptTcpClient();
@@ -52,56 +38,101 @@ namespace TicTacToe
                          thread.Start(client);
 
                     count++;
+                        m_Client = m_Socket.AcceptTcpClient();
+                        stream = m_Client.GetStream();
+                        sendData("xxaxaxa");
+                    sendData(new Play());
                     }
                 }
                 catch (Exception error)
                 {
-                    updInfo(error.Message);
+                error.ToString();
                 }
             }
 
-            public void updInfo(String textLog)
+        public void sendData(object data)
+        {
+            var formatter = new BinaryFormatter();
+            try
             {
-                if (this.txtStatus.InvokeRequired)
-                {
-                    txtStatus.Invoke(new MethodInvoker(delegate { txtStatus.Text += textLog + "\n"; }));
-                }
-                else
-                {
-                    this.txtStatus.Text = textLog;
-                }
+                formatter.Serialize(stream, data);
             }
-
-            private void sendData(TcpClient soc, String strData)
+            catch (Exception e)
             {
-                try
-                {
-
-                    if (soc.Connected && soc.Client.Poll(3000, SelectMode.SelectWrite))
-                    {
-                        {
-                            char c = (char)0;
-                            byte[] msg = System.Text.Encoding.ASCII.GetBytes(strData + c);
-                            int i = soc.Client.Send(msg, 0, msg.Length, SocketFlags.None);
-                        }
-                    }
-                    else
-                    {
-
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
-
+                Console.WriteLine(e);
             }
+        }
+
+        public object receiveData()
+        {
+            var formatter = new BinaryFormatter();
+            try
+            {
+                var o = formatter.Deserialize(stream);
+                Console.WriteLine(o);
+                return o;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public String readTextMessage(TcpClient client)
+        {
+            StreamReader streamR = new StreamReader(client.GetStream(), Encoding.ASCII);
+            String line = streamR.ReadLine();
+            return line;
+        }
+
+        public void writeTextMessage(TcpClient client, string message)
+        {
+            StreamWriter streamW = new StreamWriter(client.GetStream(), Encoding.ASCII);
+            streamW.WriteLine(message);
+            streamW.Flush();
         }
 
     }
 
+}
 
 
+/* public void updInfo(String textLog)
+         {
+             if (InvokeRequired)
+             {
+                 txtStatus.Invoke(new MethodInvoker(delegate { txtStatus.Text += textLog + "\n"; }));
+             }
+             else
+             {
+                 this.txtStatus.Text = textLog;
+             }
+         }
+
+         private void sendData(TcpClient soc, String strData)
+         {
+             try
+             {
+
+                 if (soc.Connected && soc.Client.Poll(3000, SelectMode.SelectWrite))
+                 {
+                     {
+                         char c = (char)0;
+                         byte[] msg = System.Text.Encoding.ASCII.GetBytes(strData + c);
+                         int i = soc.Client.Send(msg, 0, msg.Length, SocketFlags.None);
+                     }
+                 }
+                 else
+                 {
+
+                 }
+             }
+             catch (Exception ex)
+             {
+
+             }
+
+         }*/
 
 
 //namespace TicTacToe
