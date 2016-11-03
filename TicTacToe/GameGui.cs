@@ -273,6 +273,7 @@ namespace TicTacToe
                     gameButtons[allPlays.IndexOf(p)].Text = p.text;
                 }
             }
+            hasWon();
             }
             
         
