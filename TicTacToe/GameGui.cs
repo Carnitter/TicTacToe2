@@ -23,7 +23,7 @@ namespace TicTacToe
         public Server s;
         public bool server = false;
         public bool connected = false;
-        public System.Windows.Forms.Timer receivedTimer = new System.Windows.Forms.Timer();
+        //public System.Windows.Forms.Timer receivedTimer = new System.Windows.Forms.Timer();
 
         public GameGui(bool server)
         {
@@ -35,14 +35,14 @@ namespace TicTacToe
             {
                 c = new Client();
             }        
-            receivedTimer.Tick += new EventHandler(TimerTick);
-            receivedTimer.Interval = 1000;
+            //receivedTimer.Tick += new EventHandler(TimerTick);
+            //receivedTimer.Interval = 1000;
             gameButtons = new List<Button>();
             allPlays = new List<Play>();
             InitializeComponent();
             createGame();
-            receivedTimer.Start();
-
+            //receivedTimer.Start();
+            s.receiver += checkList;
         }
 
         public void TimerTick(Object o, EventArgs e)
@@ -256,13 +256,26 @@ namespace TicTacToe
             }
         }
 
-        public void checkList()
+        public void checkList(List<Play> turn)
         {
-            foreach(Play p in allPlays)
-            {
-                gameButtons[allPlays.IndexOf(p)].Text = p.text;
+            if (turn != null){
+                allPlays = turn;
             }
-        }
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(() => checkList(turn)));
+            }
+            else
+            {
+                foreach (Play p in allPlays)
+                {
+
+                    gameButtons[allPlays.IndexOf(p)].Text = p.text;
+                }
+            }
+            }
+            
+        
 
     }
 

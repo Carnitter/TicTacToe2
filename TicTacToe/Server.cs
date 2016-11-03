@@ -18,7 +18,9 @@ namespace TicTacToe
         public TcpClient m_Client;
         private Stream stream;
         int count = 0;
-        
+        public delegate void receivedData(List<Play> plays);
+        public receivedData receiver;
+
 
         public Server()
         {
@@ -88,6 +90,7 @@ namespace TicTacToe
                     {
                         Console.WriteLine(p);
                     }
+                    receiver.Invoke(pl);
                     return pl;
                 }
                 return o;
