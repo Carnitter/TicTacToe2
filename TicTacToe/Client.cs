@@ -17,10 +17,12 @@ namespace TicTacToe
         public delegate void infoUpdater(string text);
         public delegate void receivedData(List<Play> plays);
         public receivedData receiver;
+        public String name;
 
         //public MessagesUpdated MessageNotifier;
-        public Client()
+        public Client(String name)
         {
+            this.name = name;
             Thread findServer = new Thread(new ThreadStart(lookForConnection));
             findServer.Start();
         }

@@ -15,7 +15,6 @@ namespace TicTacToe
     {
         public Boolean turn = false;
         public Boolean gameFinished = false;
-        public Boolean winner = false;
         public int count = 0;
         public List<Button> gameButtons;
         public List<Play> allPlays;
@@ -23,17 +22,19 @@ namespace TicTacToe
         public Server s;
         public bool server = false;
         public bool connected = false;
+        public String name;
         //public System.Windows.Forms.Timer receivedTimer = new System.Windows.Forms.Timer();
 
-        public GameGui(bool server)
+        public GameGui(bool server, String name)
         {
+            this.name = name;
             this.server = server;
             if (server)
             {
-                s = new Server();
+                s = new Server(name);
             }else
             {
-                c = new Client();
+                c = new Client(name);
             }        
             //receivedTimer.Tick += new EventHandler(TimerTick);
             //receivedTimer.Interval = 1000;
@@ -140,12 +141,20 @@ namespace TicTacToe
             else
             {
                 int c = count + 1;
-                listBox1.Items.Add($"Turns: {c}");
+                //listBox1.Items.Add($"Turns: {c}");
                 for (int i = 0; i < 3; i++)
                 {
                     if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && allPlays[i].text != "")
                     {
-                        winner = true;
+                        if(allPlays[i].text == "X")
+                        {
+                            listBox1.Items.Add("Je hebt gewonnen!");
+                        }
+                        else
+                        {
+                            listBox1.Items.Add("Je hebt verloren!");
+                        }
+                        gameOver();
                     }
                 }
 
@@ -153,34 +162,44 @@ namespace TicTacToe
                 {
                     if (allPlays[i].text == allPlays[i + 1].text && allPlays[i + 1].text == allPlays[i + 2].text && allPlays[i].text != "")
                     {
-                        winner = true;
+                        if (allPlays[i].text == "X")
+                        {
+                            listBox1.Items.Add("Je hebt gewonnen!");
+                        }
+                        else
+                        {
+                            listBox1.Items.Add("Je hebt verloren!");
+                        }
+                        gameOver();
                     }
                 }
                 if (allPlays[0].text == allPlays[4].text && allPlays[4].text == allPlays[8].text && allPlays[0].text != "")
                 {
-                    winner = true;
-                }
-                if (allPlays[2].text == allPlays[4].text && allPlays[4].text == allPlays[6].text && allPlays[2].text != "")
-                {
-                    winner = true;
-                }
-
-
-
-                if (winner)
-                {
-                    if (server)
+                    if (allPlays[0].text == "X")
                     {
-                        listBox1.Items.Add("Justin wint!");
-                        Console.WriteLine("Justin wint!");
+                        listBox1.Items.Add("Je hebt gewonnen!");
                     }
                     else
                     {
-                        listBox1.Items.Add("Jairo wint!");
-                        Console.WriteLine("Jairo wint!");
+                        listBox1.Items.Add("Je hebt verloren!");
                     }
                     gameOver();
                 }
+                if (allPlays[2].text == allPlays[4].text && allPlays[4].text == allPlays[6].text && allPlays[2].text != "")
+                {
+                    if (allPlays[2].text == "X")
+                    {
+                        listBox1.Items.Add("Je hebt gewonnen!");
+                    }
+                    else
+                    {
+                        listBox1.Items.Add("Je hebt verloren!");
+                    }
+                    gameOver();
+                }
+                    
+                    
+
 
                 count = 0;
                 foreach (Play p in allPlays)
@@ -219,7 +238,6 @@ namespace TicTacToe
         {
             groupBox1.Enabled = true;
             count = 0;
-            winner = false;
             gameFinished = false;
             turn = false;
             foreach(Button b in gameButtons)

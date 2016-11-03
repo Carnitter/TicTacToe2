@@ -20,10 +20,12 @@ namespace TicTacToe
         int count = 0;
         public delegate void receivedData(List<Play> plays);
         public receivedData receiver;
+        public String name;
 
 
-        public Server()
+        public Server(String name)
         {
+            this.name = name;
             //acceptConnections();
             Thread acceptClients = new Thread(new ThreadStart(acceptConnections));
             acceptClients.Start();
@@ -58,12 +60,54 @@ namespace TicTacToe
             }
         }
 
+        public void writeToFile(List<Play> dataPlays)
+        {
+            string mydocpath = Environment.CurrentDirectory;
+            using (StreamWriter outputFile = new StreamWriter(mydocpath + $"titactoe.txt", true))
+            {
+                string line = "";
+                outputFile.WriteLine("------------------------------------------------------------------------");
+                outputFile.WriteLine("|-----|");
+                List<Play> pl = dataPlays;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    String s1 = " ";
+                    String s2 = " ";
+                    String s3 = " ";
+                    if (dataPlays[i].ToString() != "")
+                    {
+                        s1 = dataPlays[i].ToString();
+                    }
+                    if (dataPlays[i+3].ToString() != "")
+                    {
+                        s2 = dataPlays[i+3].ToString();
+                    }
+                    if (dataPlays[i+6].ToString() != "")
+                    {
+                        s3 = dataPlays[i+6].ToString();
+                    }
+
+                    outputFile.WriteLine($"|{s1}-{s2}-{s3}|");
+                    outputFile.WriteLine("|-----|");
+                }
+
+                outputFile.WriteLine("------------------------------------------------------------------------");
+            }
+        }
+
         public void sendData(object data)
         {
             var formatter = new BinaryFormatter();
             try
             {
+                if (data is List<Play>)
+                {
+                    List<Play> plays = (List<Play>)data;
+                    writeToFile(plays);
+                }
                 formatter.Serialize(stream, data);
+                
             }
             catch (Exception e)
             {
@@ -86,10 +130,7 @@ namespace TicTacToe
                 if (o is List<Play>)
                 {
                     List<Play> pl = (List<Play>)o;
-                    foreach (Play p in pl)
-                    {
-                        Console.WriteLine(p);
-                    }
+                    writeToFile(pl);
                     receiver.Invoke(pl);
                     return pl;
                 }
