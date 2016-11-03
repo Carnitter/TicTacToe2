@@ -12,46 +12,46 @@ using System.Windows.Forms;
 
 namespace TicTacToe
 {
-           public class Server
+    public class Server
+    {
+        public TcpListener m_Socket;
+        private TcpClient m_Client;
+        private Stream stream;
+        int count = 0;
+        public Server()
         {
-            public TcpListener m_Socket;
-            private TcpClient m_Client;
-            private Stream stream;
-            int count = 0;
-            public Server()
-            {
-                Thread acceptClients = new Thread(new ThreadStart(acceptConnections));
-                acceptClients.Start();
-            }
+            Thread acceptClients = new Thread(new ThreadStart(acceptConnections));
+            acceptClients.Start();
+        }
 
-            private void acceptConnections()
+        private void acceptConnections()
+        {
+            try
             {
-                try
-                {
                 //localhost
                 //IPAddress ipConfig = IPAddress.Parse("127.0.0.1");
                 //Justin IP
                 IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
                 //Jairo IP
                 //IPAddress ipConfig = IPAddress.Parse("145.48.119.239");   
-                    m_Socket = new TcpListener(ipConfig, 8001);
-                    m_Socket.Start();
-                    m_Client = m_Socket.AcceptTcpClient();
-                    stream = m_Client.GetStream();
+                m_Socket = new TcpListener(ipConfig, 8001);
+                m_Socket.Start();
+                m_Client = m_Socket.AcceptTcpClient();
+                stream = m_Client.GetStream();
                 while (true)
-                    {                       
-                        if (m_Client.Connected)
-                        {
-                        receiveData();
-                        }
-                    
-                    }
-                }
-                catch (Exception error)
                 {
-                error.ToString();
+                    if (m_Client.Connected)
+                    {
+                        receiveData();
+                    }
+
                 }
             }
+            catch (Exception error)
+            {
+                error.ToString();
+            }
+        }
 
         public void sendData(object data)
         {
