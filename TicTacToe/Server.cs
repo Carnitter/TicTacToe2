@@ -113,6 +113,7 @@ namespace TicTacToe
                 if (data is String)
                 { 
                     String oString = (String)data;
+                    oString = $"{name}: {oString}";
                     chatReceiver.Invoke(oString);
                 }
                 formatter.Serialize(stream, data);

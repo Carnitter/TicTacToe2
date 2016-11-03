@@ -46,9 +46,11 @@ namespace TicTacToe
             if (server)
             {
                 s.receiver += checkList;
+                s.chatReceiver += updateChat;
             }else
             {
                 c.receiver += checkList;
+                c.chatReceiver += updateChat;
             }
             
         }
@@ -100,6 +102,9 @@ namespace TicTacToe
                 if (server)
                 {
                     s.sendData(str);
+                }else
+                {
+                    c.sendData(str);
                 }
             }
             textBox1.Text = "";
