@@ -13,7 +13,7 @@ namespace TicTacToe
         static void Main(string[] args)
         {
             (new Thread(() => { Server s = new Server(); })).Start();
-            Client c = new Client();
+            //Client c = new Client();
             /*GameGui gui = new GameGui();
             gui.Show();
             gui.Activate();
