@@ -37,7 +37,7 @@ namespace TicTacToe
                     button.Location = new System.Drawing.Point(20 + 45 * (x - 1), 20 + 45 * (y - 1));
                     button.Size = new System.Drawing.Size(45, 45);
                     button.UseVisualStyleBackColor = true;
-                    button.Click += button_Click; ;
+                    button.Click += button_Click;
                     button.Visible = true;
                     gameButtons.Add(button);
                     groupBox1.Controls.Add(button);
@@ -112,7 +112,6 @@ namespace TicTacToe
             {
                 winner = true;
             }
-
             if (count == 8 && !winner)
             {
                 gameOver();
