@@ -92,7 +92,7 @@ namespace TicTacToe
             }
             button.Enabled = false;
             turn = !turn;
-            c.sendData(allPlays[i]);
+            c.sendData(allPlays);
             hasWon();
         }
 

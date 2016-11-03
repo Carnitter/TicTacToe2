@@ -33,17 +33,18 @@ namespace TicTacToe
                 //Justin IP
                 IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
                 //Jairo IP
-                //IPAddress ipConfig = IPAddress.Parse("145.48.119.239");
-                
+                //IPAddress ipConfig = IPAddress.Parse("145.48.119.239");   
                     m_Socket = new TcpListener(ipConfig, 8001);
                     m_Socket.Start();
-                    while (true)
-                    {
-                        m_Client = m_Socket.AcceptTcpClient();
-                        stream = m_Client.GetStream();
-                    sendData("xxaxaxa");
-                    sendData(new Play());
-                    receiveData();
+                    m_Client = m_Socket.AcceptTcpClient();
+                    stream = m_Client.GetStream();
+                while (true)
+                    {                       
+                        if (m_Client.Connected)
+                        {
+                        receiveData();
+                        }
+                    
                     }
                 }
                 catch (Exception error)
