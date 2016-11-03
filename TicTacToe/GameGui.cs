@@ -169,7 +169,7 @@ namespace TicTacToe
 
                 if (winner)
                 {
-                    if (turn)
+                    if (server)
                     {
                         listBox1.Items.Add("Justin wint!");
                         Console.WriteLine("Justin wint!");
@@ -255,7 +255,7 @@ namespace TicTacToe
                     
                 }             
             }
-
+            hasWon();
         }
             
         
