@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,7 +24,7 @@ namespace TicTacToe
 
         public GameGui()
         {
-            c = new TicTacToe.Client();
+            c = new Client();
             gameButtons = new List<Button>();
             allPlays = new List<Play>();
             InitializeComponent();
@@ -91,7 +92,7 @@ namespace TicTacToe
             }
             button.Enabled = false;
             turn = !turn;
-            c.sendData(allPlays);
+            c.sendData(allPlays[i]);
             hasWon();
         }
 

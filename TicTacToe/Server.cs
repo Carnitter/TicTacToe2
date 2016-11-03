@@ -31,21 +31,19 @@ namespace TicTacToe
                 //localhost
                 //IPAddress ipConfig = IPAddress.Parse("127.0.0.1");
                 //Justin IP
-                //IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
+                IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
                 //Jairo IP
-                IPAddress ipConfig = IPAddress.Parse("145.48.119.239");
+                //IPAddress ipConfig = IPAddress.Parse("145.48.119.239");
                 
                     m_Socket = new TcpListener(ipConfig, 8001);
                     m_Socket.Start();
                     while (true)
                     {
-                        //Thread thread = new Thread(HandleClientThread);
-                        //thread.Start(client);
-                        //count++;
                         m_Client = m_Socket.AcceptTcpClient();
                         stream = m_Client.GetStream();
-                        sendData("xxaxaxa");
-                        sendData(new Play());
+                    sendData("xxaxaxa");
+                    sendData(new Play());
+                    receiveData();
                     }
                 }
                 catch (Exception error)
