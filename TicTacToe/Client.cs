@@ -71,13 +71,18 @@ namespace TicTacToe
             var formatter = new BinaryFormatter();
             try
             {
+                String oString;
                 if (data is String)
                 {
-                    String oString = (String)data;
+                    oString = (String)data;
                     oString = $"{name}: {oString}";
                     chatReceiver.Invoke(oString);
+                    formatter.Serialize(stream, oString);
+                }else
+                {
+                    formatter.Serialize(stream, data);
                 }
-                formatter.Serialize(stream, data);
+                
             }
             catch (Exception e)
             {
@@ -100,10 +105,6 @@ namespace TicTacToe
                 if(o is List<Play>)
                 {
                     List<Play> pl = (List<Play>)o;
-                    foreach(Play p in pl)
-                    {
-                        Console.WriteLine(p);
-                    }
                     receiver.Invoke(pl);
                     return pl;
                 }
