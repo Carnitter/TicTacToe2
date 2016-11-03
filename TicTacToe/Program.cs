@@ -24,12 +24,6 @@ namespace TicTacToe
             Application.Run(guiS);
             
             
-            /*GameGui gui = new GameGui(false);
-            gui.Show();
-            gui.Activate();
-            gui.Visible = true;
-            gui.SetDesktopLocation(0, 0);
-            Application.Run(gui);*/
         }
     }
 }
