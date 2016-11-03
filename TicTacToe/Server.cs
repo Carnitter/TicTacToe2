@@ -34,11 +34,11 @@ namespace TicTacToe
             try
             {
                 //localhost
-                IPAddress ipConfig = IPAddress.Parse("127.0.0.1");
+                IPAddress ipConfig = IPAddress.Parse("192.168.1.35");
                 //Justin IP
                 //IPAddress ipConfig = IPAddress.Parse("145.102.70.175");
                 //Jairo IP
-                //IPAddress ipConfig = IPAddress.Parse("145.48.119.239");   
+                //IPAddress ipConfig = IPAddress.Parse("145.48.119.239");
                 m_Socket = new TcpListener(ipConfig, 8001);
                 m_Socket.Start();
                 m_Client = m_Socket.AcceptTcpClient();

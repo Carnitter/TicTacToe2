@@ -115,7 +115,10 @@ namespace TicTacToe
                 allPlays[i].text = "O";
                 button.Text = "O";
             }
-            button.Enabled = false;
+            foreach(Button b in gameButtons)
+            {
+                b.Enabled = false;
+            }
             turn = !turn;
             if (server)
             {
@@ -139,7 +142,7 @@ namespace TicTacToe
                 listBox1.Items.Add($"Turns: {count + 1}");
                 for (int i = 0; i < 3; i++)
                 {
-                    if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && !gameButtons[i].Enabled)
+                    if (allPlays[i].text == allPlays[i + 3].text && allPlays[i + 3].text == allPlays[i + 6].text && allPlays[i].text != "")
                     {
                         winner = true;
                     }
@@ -147,16 +150,16 @@ namespace TicTacToe
 
                 for (int i = 0; i < 9; i += 3)
                 {
-                    if (allPlays[i].text == allPlays[i + 1].text && allPlays[i + 1].text == allPlays[i + 2].text && !gameButtons[i].Enabled)
+                    if (allPlays[i].text == allPlays[i + 1].text && allPlays[i + 1].text == allPlays[i + 2].text && allPlays[i].text != "")
                     {
                         winner = true;
                     }
                 }
-                if (allPlays[0].text == allPlays[4].text && allPlays[4].text == allPlays[8].text && !gameButtons[0].Enabled)
+                if (allPlays[0].text == allPlays[4].text && allPlays[4].text == allPlays[8].text && allPlays[0].text != "")
                 {
                     winner = true;
                 }
-                if (allPlays[2].text == allPlays[4].text && allPlays[4].text == allPlays[6].text && !gameButtons[2].Enabled)
+                if (allPlays[2].text == allPlays[4].text && allPlays[4].text == allPlays[6].text && allPlays[2].text != "")
                 {
                     winner = true;
                 }
@@ -243,10 +246,14 @@ namespace TicTacToe
                 foreach (Play p in allPlays)
                 {
                     gameButtons[allPlays.IndexOf(p)].Text = p.text;
-                }
-                
+                    if(p.text == "")
+                    {
+                        gameButtons[allPlays.IndexOf(p)].Enabled = true;
+                    }
+                    
+                }             
             }
-            hasWon();
+
         }
             
         

@@ -32,7 +32,7 @@ namespace TicTacToe
                 tcpclnt = new TcpClient();
                 Console.WriteLine("Connecting.....");
                 //localhost
-                tcpclnt.Connect("127.0.0.1", 8001);
+                tcpclnt.Connect("192.168.1.35", 8001);
                 //justin IP
                 //tcpclnt.Connect("145.102.70.175", 8001);
                 //jairo IP
