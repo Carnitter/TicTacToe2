@@ -34,7 +34,6 @@ namespace TicTacToe
             try
             {
                 tcpclnt = new TcpClient();
-                Console.WriteLine("Connecting.....");
                 //localhost
                 //tcpclnt.Connect("127.0.0.1", 8001);
                 //thuis PC
@@ -50,8 +49,6 @@ namespace TicTacToe
 
                 while (true)
                 {
-                    Console.WriteLine("Connected");
-                    Console.WriteLine(tcpclnt.Connected);
                     if (tcpclnt.Connected)
                     {
                       receiveData();
@@ -96,7 +93,6 @@ namespace TicTacToe
             try
             {
                 var o = formatter.Deserialize(stream);
-                Console.WriteLine(o);
                 if(o is Play)
                 {
                     Play p = (Play)o;

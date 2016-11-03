@@ -111,14 +111,11 @@ namespace TicTacToe
                     oString = (String)data;
                     oString = $"{name}: {oString}";
                     chatReceiver.Invoke(oString);
-                    formatter.Serialize(stream, oString);
+                    formatter.Serialize(stream, (Object)oString);
                 }else
                 {
                     formatter.Serialize(stream, data);
                 }
-                
-                
-
             }
             catch (Exception e)
             {
@@ -132,7 +129,6 @@ namespace TicTacToe
             try
             {
                 var o = formatter.Deserialize(stream);
-                Console.WriteLine(o);
                 if(o is String)
                 {
                     String oString = (String)o;
