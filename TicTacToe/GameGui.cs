@@ -106,7 +106,7 @@ namespace TicTacToe
         {
             Button button = (Button)sender;
             int i = gameButtons.IndexOf(button);
-            if (!turn)
+            if (server)
             {
                 allPlays[i].text = "X";
                 button.Text = "X";

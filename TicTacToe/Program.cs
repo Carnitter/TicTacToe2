@@ -16,7 +16,7 @@ namespace TicTacToe
 
             //(new Thread(() => { Server s = new Server(); })).Start();
             //(new Thread(() => { Client c = new Client(); })).Start();
-            GameGui gui = new GameGui(false);
+            GameGui gui = new GameGui(true);
             gui.Show();
             gui.Activate();
             gui.Visible = true;
