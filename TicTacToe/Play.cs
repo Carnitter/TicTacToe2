@@ -10,8 +10,6 @@ namespace TicTacToe
     public class Play
     {
         public String text;
-        public String test;
-        public int age;
 
         public Play()
         {
@@ -20,9 +18,7 @@ namespace TicTacToe
 
         public override String ToString()
         {
-            test = "JAIRO";
-            age = 21;
-            return $"{text} {test} {age}";
+            return text;
         }
 
 
