@@ -15,6 +15,8 @@ namespace TicTacToe
         private Stream stream;
         public TcpClient tcpclnt;
         public delegate void infoUpdater(string text);
+        public delegate void receivedData(List<Play> plays);
+        public receivedData receiver;
 
         //public MessagesUpdated MessageNotifier;
         public Client()
@@ -89,6 +91,7 @@ namespace TicTacToe
                     {
                         Console.WriteLine(p);
                     }
+                    receiver.Invoke(pl);
                     return pl;
                 }
                 return o;

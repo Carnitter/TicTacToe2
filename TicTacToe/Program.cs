@@ -22,12 +22,12 @@ namespace TicTacToe
             Application.Run(guiS);
             //(new Thread(() => { Server s = new Server(); })).Start();
             
-            /*GameGui gui = new GameGui(false);
+            GameGui gui = new GameGui(false);
             gui.Show();
             gui.Activate();
             gui.Visible = true;
             gui.SetDesktopLocation(0, 0);
-            Application.Run(gui);*/
+            Application.Run(gui);
         }
     }
 }

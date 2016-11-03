@@ -42,7 +42,14 @@ namespace TicTacToe
             InitializeComponent();
             createGame();
             //receivedTimer.Start();
-            s.receiver += checkList;
+            if (server)
+            {
+                s.receiver += checkList;
+            }else
+            {
+                c.receiver += checkList;
+            }
+            
         }
 
         public void TimerTick(Object o, EventArgs e)
