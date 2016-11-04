@@ -108,7 +108,7 @@ namespace TicTacToe
                 String oString;
                 if (data is List<Play>)
                 {
-                    List<Play> pl = (List<Play>)o;
+                    List<Play> pl = (List<Play>)data;
                     writeToFile(pl);
                 }
                 if (data is String)
