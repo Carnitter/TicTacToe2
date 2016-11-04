@@ -106,6 +106,11 @@ namespace TicTacToe
             try
             {
                 String oString;
+                if (data is List<Play>)
+                {
+                    List<Play> pl = (List<Play>)o;
+                    writeToFile(pl);
+                }
                 if (data is String)
                 {
                     oString = (String)data;
