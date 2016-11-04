@@ -37,9 +37,9 @@ namespace TicTacToe
                 //localhost
                 //tcpclnt.Connect("127.0.0.1", 8001);
                 //thuis PC
-                tcpclnt.Connect("192.168.1.35", 8001);
+                //tcpclnt.Connect("192.168.1.35", 8001);
                 //justin IP
-                //tcpclnt.Connect("145.102.70.175", 8001);
+                tcpclnt.Connect("145.102.70.175", 8001);
                 //jairo IP
                 //tcpclnt.Connect("145.48.119.239", 8001);
                 stream = tcpclnt.GetStream();
